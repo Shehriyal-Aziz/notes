@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Computer Fundamentals — MCQ Notes</title>
 <link rel="icon" type="image/png" href="exam.png">
 <style>
@@ -474,142 +473,10 @@
   #toast.show { transform: translateX(-50%) translateY(0); }
 
   /* ===== RESPONSIVE ===== */
-
-  /* Tablet (max 768px) */
-  @media (max-width: 768px) {
-    body {
-      padding: 0 14px 60px;
-      font-size: 0.97em;
-    }
-
-    h1 { font-size: 1.3em; }
-
-    #toolbar {
-      margin: 0 -14px 18px;
-      padding: 8px 12px;
-      gap: 6px;
-    }
-
-    /* Hide separators on small screens */
-    #toolbar .sep { display: none; }
-
-    /* Toolbar wraps into 2 rows naturally */
-    .toolbar-group { flex-wrap: wrap; }
-
-    .btn { padding: 6px 10px; font-size: 0.8em; }
-
+  @media (max-width: 580px) {
+    #toolbar { gap: 5px; padding: 8px 12px; }
+    .btn { padding: 5px 9px; font-size: 0.78em; }
     .mcq-card { padding: 16px 16px; }
-
-    #test-panel .test-card {
-      padding: 20px 18px;
-    }
-
-    #test-panel .test-question { font-size: 1em; }
-
-    #test-setup > div {
-      padding: 20px 18px !important;
-    }
-  }
-
-  /* Mobile (max 480px) */
-  @media (max-width: 480px) {
-    body {
-      padding: 0 10px 70px;
-      font-size: 0.93em;
-    }
-
-    h1 { font-size: 1.15em; line-height: 1.3; }
-    h2 { font-size: 1.05em; }
-
-    /* Toolbar: stack all groups, full width rows */
-    #toolbar {
-      margin: 0 -10px 14px;
-      padding: 8px 10px;
-      gap: 5px;
-    }
-
-    .toolbar-group {
-      width: 100%;
-      justify-content: flex-start;
-    }
-
-    /* Jump input takes remaining space */
-    #jump-input { flex: 1; width: auto; min-width: 0; }
-
-    /* Collapse buttons side by side, equal width */
-    .toolbar-group:nth-child(3) { gap: 5px; }
-    .toolbar-group:nth-child(3) .btn { flex: 1; text-align: center; }
-
-    /* Dark + Test buttons row */
-    #toolbar-right {
-      flex: 1;
-      gap: 6px;
-    }
-    #toolbar-right .btn { flex: 1; text-align: center; }
-
-    /* Cards */
-    .mcq-card {
-      padding: 13px 12px;
-      border-radius: 8px;
-      margin-bottom: 14px;
-    }
-
-    .mcq-question { font-size: 0.97em; }
-
-    .options li { padding: 7px 9px; font-size: 0.92em; }
-
-    .card-header { flex-wrap: wrap; gap: 5px; }
-
-    .explanation { padding: 9px 11px; font-size: 0.88em; }
-
-    .tag { font-size: 0.7em; }
-
-    /* Test card */
-    #test-panel .test-card {
-      padding: 16px 13px;
-      min-height: auto;
-    }
-
-    #test-panel .test-question { font-size: 0.97em; margin-bottom: 14px; }
-    #test-panel .test-options li { padding: 9px 11px; font-size: 0.92em; }
-
-    #test-panel .test-nav {
-      flex-direction: row;
-      justify-content: space-between;
-      gap: 8px;
-    }
-    #test-panel .test-nav .btn { flex: 1; text-align: center; }
-
-    #test-setup > div { padding: 16px 14px !important; }
-    #test-setup label { font-size: 0.85em !important; }
-    #test-setup input, #test-setup select { font-size: 0.92em !important; }
-
-    /* Results */
-    #test-results { padding: 24px 10px; }
-    #test-results .score-circle { width: 100px; height: 100px; font-size: 1.7em; }
-
-    /* Note buttons wrap on tiny screens */
-    .note-btns { flex-wrap: wrap; }
-    .note-btns .btn { flex: 1; min-width: 70px; text-align: center; }
-
-    /* Page header */
-    #page-header { padding-top: 12px; }
-    #page-header p { font-size: 0.85em; }
-
-    /* Toast narrower on mobile */
-    #toast { font-size: 0.82em; padding: 8px 16px; white-space: normal; max-width: 90vw; text-align: center; }
-
-    /* Missing card */
-    .missing { padding: 12px 13px; font-size: 0.85em; }
-  }
-
-  /* Very small screens (max 360px) */
-  @media (max-width: 360px) {
-    body { padding: 0 8px 70px; }
-    h1 { font-size: 1.05em; }
-    .btn { font-size: 0.75em; padding: 5px 8px; }
-    .mcq-card { padding: 11px 10px; }
-    .options li { font-size: 0.88em; }
   }
 </style>
 </head>
@@ -633,9 +500,15 @@
 
   <div class="sep"></div>
 
-  <!-- Dark mode + Test mode (grouped for mobile) -->
-  <div class="toolbar-group" id="toolbar-right">
+  <!-- Dark mode -->
+  <div class="toolbar-group">
     <button class="btn btn-secondary" id="dark-toggle" onclick="toggleDark()">🌙 Dark Mode</button>
+  </div>
+
+  <div class="sep"></div>
+
+  <!-- Test mode -->
+  <div class="toolbar-group">
     <button class="btn btn-danger" onclick="enterTestMode()">🧪 Test Mode</button>
   </div>
 </div>
