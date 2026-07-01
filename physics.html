@@ -1,0 +1,2529 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Physics — MCQ Notes</title>
+    <link rel="icon" type="image/png" href="exam.png" />
+    <style>
+      /* ===== CSS VARIABLES (Light Mode) ===== */
+      :root {
+        --bg: #f4f6f9;
+        --card-bg: #fff;
+        --text: #222;
+        --text-muted: #777;
+        --heading: #1a3d63;
+        --border-accent: #1a3d63;
+        --tag-bg: #1a3d63;
+        --tag-text: #fff;
+        --option-bg: #f0f3f7;
+        --option-text: #222;
+        --correct-bg: #d7f0db;
+        --correct-text: #1a6b2f;
+        --explanation-bg: #fff9e6;
+        --explanation-border: #e6b800;
+        --missing-bg: #fdecea;
+        --missing-border: #d9534f;
+        --missing-text: #7a2e29;
+        --shadow: rgba(0, 0, 0, 0.08);
+        --toolbar-bg: #fff;
+        --toolbar-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+        --btn-primary: #1a3d63;
+        --btn-primary-text: #fff;
+        --btn-secondary: #f0f3f7;
+        --btn-secondary-text: #333;
+        --input-bg: #f0f3f7;
+        --input-border: #ccd4df;
+        --note-user-bg: #eef6ff;
+        --note-user-border: #4a90d9;
+        --bookmarked-border: #f5a623;
+        --test-wrong: #ffe0e0;
+        --test-wrong-text: #c0392b;
+        --test-option-hover: #e2e8f0;
+      }
+
+      /* ===== DARK MODE ===== */
+      body.dark {
+        --bg: #111827;
+        --card-bg: #1f2937;
+        --text: #e5e7eb;
+        --text-muted: #9ca3af;
+        --heading: #93c5fd;
+        --border-accent: #3b82f6;
+        --tag-bg: #3b82f6;
+        --tag-text: #fff;
+        --option-bg: #374151;
+        --option-text: #e5e7eb;
+        --correct-bg: #14532d;
+        --correct-text: #86efac;
+        --explanation-bg: #292524;
+        --explanation-border: #ca8a04;
+        --missing-bg: #3b1010;
+        --missing-border: #ef4444;
+        --missing-text: #fca5a5;
+        --shadow: rgba(0, 0, 0, 0.4);
+        --toolbar-bg: #1f2937;
+        --toolbar-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+        --btn-primary: #3b82f6;
+        --btn-primary-text: #fff;
+        --btn-secondary: #374151;
+        --btn-secondary-text: #e5e7eb;
+        --input-bg: #374151;
+        --input-border: #4b5563;
+        --note-user-bg: #1e3a5f;
+        --note-user-border: #3b82f6;
+        --bookmarked-border: #f59e0b;
+        --test-wrong: #3b0f0f;
+        --test-wrong-text: #f87171;
+        --test-option-hover: #374151;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Arial, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        max-width: 860px;
+        margin: 0 auto;
+        padding: 0 20px 60px;
+        line-height: 1.6;
+        transition:
+          background 0.3s,
+          color 0.3s;
+      }
+
+      h1 {
+        color: var(--heading);
+        border-bottom: 3px solid var(--border-accent);
+        padding-bottom: 8px;
+        margin-top: 0;
+      }
+
+      /* ===== STICKY TOOLBAR ===== */
+      #toolbar {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: var(--toolbar-bg);
+        box-shadow: var(--toolbar-shadow);
+        padding: 10px 16px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        align-items: center;
+        margin: 0 -20px 24px;
+        transition: background 0.3s;
+      }
+
+      #toolbar .toolbar-group {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      #toolbar .sep {
+        width: 1px;
+        height: 28px;
+        background: var(--input-border);
+        margin: 0 4px;
+      }
+
+      .btn {
+        padding: 6px 12px;
+        border-radius: 7px;
+        border: none;
+        cursor: pointer;
+        font-size: 0.82em;
+        font-weight: 600;
+        transition:
+          opacity 0.15s,
+          transform 0.1s;
+        white-space: nowrap;
+      }
+      .btn:hover {
+        opacity: 0.85;
+        transform: translateY(-1px);
+      }
+      .btn:active {
+        transform: translateY(0);
+      }
+
+      .btn-primary {
+        background: var(--btn-primary);
+        color: var(--btn-primary-text);
+      }
+      .btn-secondary {
+        background: var(--btn-secondary);
+        color: var(--btn-secondary-text);
+      }
+      .btn-danger {
+        background: #ef4444;
+        color: #fff;
+      }
+      .btn-success {
+        background: #22c55e;
+        color: #fff;
+      }
+      .btn-warn {
+        background: #f59e0b;
+        color: #fff;
+      }
+
+      #jump-input {
+        width: 70px;
+        padding: 5px 8px;
+        border-radius: 7px;
+        border: 1.5px solid var(--input-border);
+        background: var(--input-bg);
+        color: var(--text);
+        font-size: 0.85em;
+        outline: none;
+      }
+      #jump-input:focus {
+        border-color: var(--btn-primary);
+      }
+
+      /* ===== MCQ CARDS ===== */
+      .mcq-card {
+        background: var(--card-bg);
+        border-radius: 10px;
+        padding: 20px 25px;
+        margin-bottom: 22px;
+        box-shadow: 0 2px 6px var(--shadow);
+        border-left: 5px solid var(--border-accent);
+        transition:
+          background 0.3s,
+          box-shadow 0.3s,
+          border-color 0.3s;
+      }
+
+      .mcq-card.bookmarked {
+        border-left-color: var(--bookmarked-border);
+      }
+
+      /* ===== CARD HEADER ROW ===== */
+      .card-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 6px;
+        gap: 8px;
+      }
+      .card-header-left {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+
+      .tag {
+        display: inline-block;
+        background: var(--tag-bg);
+        color: var(--tag-text);
+        font-size: 0.75em;
+        padding: 2px 8px;
+        border-radius: 12px;
+      }
+
+      .card-actions {
+        display: flex;
+        gap: 6px;
+        align-items: center;
+      }
+
+      .icon-btn {
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 1.1em;
+        padding: 3px 5px;
+        border-radius: 6px;
+        line-height: 1;
+        transition: background 0.15s;
+        color: var(--text-muted);
+      }
+      .icon-btn:hover {
+        background: var(--option-bg);
+        color: var(--text);
+      }
+      .icon-btn.active {
+        color: var(--bookmarked-border);
+      }
+
+      /* ===== COLLAPSE TOGGLE ===== */
+      .collapse-toggle {
+        font-size: 0.78em;
+        color: var(--btn-primary);
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        font-weight: 600;
+        text-decoration: underline;
+      }
+
+      .collapsible {
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+      }
+      .collapsible.collapsed {
+        max-height: 0 !important;
+      }
+
+      /* ===== OPTIONS ===== */
+      .mcq-question {
+        font-weight: 600;
+        font-size: 1.06em;
+        margin-bottom: 10px;
+        color: var(--text);
+      }
+
+      .options {
+        list-style: none;
+        padding-left: 0;
+        margin: 10px 0;
+      }
+
+      .options li {
+        padding: 6px 10px;
+        margin-bottom: 4px;
+        border-radius: 6px;
+        background: var(--option-bg);
+        color: var(--option-text);
+        transition: background 0.2s;
+      }
+
+      .correct {
+        background: var(--correct-bg) !important;
+        font-weight: 600;
+        color: var(--correct-text) !important;
+      }
+
+      .explanation {
+        background: var(--explanation-bg);
+        border-left: 4px solid var(--explanation-border);
+        padding: 10px 15px;
+        margin-top: 10px;
+        border-radius: 6px;
+        font-size: 0.95em;
+        color: var(--text);
+      }
+
+      .note {
+        font-size: 0.85em;
+        color: var(--text-muted);
+        margin-top: 8px;
+      }
+
+      .missing {
+        background: var(--missing-bg);
+        border-left: 5px solid var(--missing-border);
+        padding: 15px 20px;
+        border-radius: 10px;
+        margin-bottom: 25px;
+        font-size: 0.9em;
+        color: var(--missing-text);
+      }
+
+      /* ===== USER NOTES ===== */
+      .user-note-area {
+        margin-top: 10px;
+      }
+
+      .user-note-display {
+        background: var(--note-user-bg);
+        border-left: 4px solid var(--note-user-border);
+        padding: 8px 12px;
+        border-radius: 6px;
+        font-size: 0.88em;
+        color: var(--text);
+        white-space: pre-wrap;
+        margin-bottom: 6px;
+      }
+
+      .user-note-textarea {
+        width: 100%;
+        min-height: 64px;
+        border-radius: 7px;
+        border: 1.5px solid var(--input-border);
+        background: var(--input-bg);
+        color: var(--text);
+        padding: 8px 10px;
+        font-size: 0.88em;
+        font-family: inherit;
+        resize: vertical;
+        display: none;
+        outline: none;
+      }
+      .user-note-textarea:focus {
+        border-color: var(--note-user-border);
+      }
+
+      .note-btns {
+        display: flex;
+        gap: 6px;
+        margin-top: 5px;
+      }
+
+      /* ===== HEADER AREA ===== */
+      #page-header {
+        padding-top: 20px;
+      }
+
+      /* ===== TEST MODE ===== */
+      body.test-mode #toolbar {
+        display: none;
+      }
+      body.test-mode .mcq-card {
+        display: none;
+      }
+      body.test-mode #test-panel {
+        display: block;
+      }
+      body.test-mode #notes-content {
+        display: none;
+      }
+      body.test-mode #page-footer {
+        display: none;
+      }
+
+      #test-panel {
+        display: none;
+      }
+
+      /* test-card styles moved to fixed layout section below */
+
+      #test-panel .test-meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 14px;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      #test-panel .test-progress {
+        font-size: 0.85em;
+        color: var(--text-muted);
+        font-weight: 600;
+      }
+
+      #test-panel .test-question {
+        font-weight: 700;
+        font-size: 1.1em;
+        margin-bottom: 18px;
+        color: var(--text);
+        line-height: 1.5;
+      }
+
+      #test-panel .test-options {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 16px;
+      }
+
+      #test-panel .test-options li {
+        padding: 10px 14px;
+        margin-bottom: 8px;
+        border-radius: 8px;
+        background: var(--option-bg);
+        color: var(--option-text);
+        cursor: pointer;
+        border: 2px solid transparent;
+        transition:
+          background 0.15s,
+          border-color 0.15s;
+        font-size: 0.97em;
+      }
+
+      #test-panel .test-options li:hover:not(.locked) {
+        background: var(--test-option-hover);
+        border-color: var(--btn-primary);
+      }
+
+      #test-panel .test-options li.selected-correct {
+        background: var(--correct-bg) !important;
+        color: var(--correct-text) !important;
+        border-color: #22c55e !important;
+        font-weight: 700;
+      }
+
+      #test-panel .test-options li.selected-wrong {
+        background: var(--test-wrong) !important;
+        color: var(--test-wrong-text) !important;
+        border-color: #ef4444 !important;
+        font-weight: 700;
+      }
+
+      #test-panel .test-options li.reveal-correct {
+        background: var(--correct-bg) !important;
+        color: var(--correct-text) !important;
+        border-color: #22c55e !important;
+      }
+
+      #test-panel .test-explanation {
+        background: var(--explanation-bg);
+        border-left: 4px solid var(--explanation-border);
+        padding: 12px 15px;
+        border-radius: 6px;
+        font-size: 0.92em;
+        color: var(--text);
+        margin-bottom: 16px;
+        display: none;
+      }
+
+      /* test-nav styles moved to fixed layout section below */
+
+      #test-results {
+        display: none;
+        text-align: center;
+        padding: 40px 20px;
+      }
+
+      #test-results .score-circle {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        background: var(--btn-primary);
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-size: 2em;
+        font-weight: 800;
+        margin: 0 auto 20px;
+      }
+
+      #test-results .score-circle span {
+        font-size: 0.45em;
+        font-weight: 400;
+      }
+
+      #test-results h2 {
+        color: var(--heading);
+        margin-bottom: 10px;
+      }
+
+      .test-mode-label {
+        display: inline-block;
+        background: #ef4444;
+        color: #fff;
+        font-size: 0.7em;
+        padding: 2px 8px;
+        border-radius: 10px;
+        font-weight: 700;
+        animation: pulse 1.5s infinite;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.6;
+        }
+      }
+
+      /* ===== TEST CARD FIXED LAYOUT ===== */
+      #test-panel .test-card {
+        background: var(--card-bg);
+        border-radius: 12px;
+        box-shadow: 0 4px 16px var(--shadow);
+        border-left: 5px solid var(--border-accent);
+        display: flex;
+        flex-direction: column;
+        height: calc(100vh - 80px);
+        min-height: 420px;
+        overflow: hidden;
+        padding: 0;
+      }
+
+      /* Fixed top bar */
+      .test-topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px 20px;
+        border-bottom: 1px solid var(--input-border);
+        gap: 10px;
+        flex-wrap: wrap;
+        flex-shrink: 0;
+        background: var(--card-bg);
+      }
+
+      .test-topbar-actions {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        flex-wrap: wrap;
+      }
+
+      #test-jump-input {
+        width: 72px;
+        padding: 5px 8px;
+        border-radius: 7px;
+        border: 1.5px solid var(--input-border);
+        background: var(--input-bg);
+        color: var(--text);
+        font-size: 0.82em;
+        outline: none;
+      }
+      #test-jump-input:focus {
+        border-color: var(--btn-primary);
+      }
+      .test-jump-btn {
+        font-size: 0.78em !important;
+      }
+
+      /* Scrollable body */
+      .test-body {
+        flex: 1;
+        overflow-y: auto;
+        padding: 20px 24px;
+        scroll-behavior: smooth;
+      }
+
+      /* Fixed bottom nav */
+      #test-panel .test-nav {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 20px;
+        border-top: 1px solid var(--input-border);
+        background: var(--card-bg);
+        flex-shrink: 0;
+        flex-wrap: nowrap;
+      }
+
+      .test-nav-hint {
+        flex: 1;
+        text-align: center;
+        font-size: 0.72em;
+        color: var(--text-muted);
+        white-space: nowrap;
+      }
+
+      .kbd-hint {
+        font-size: 0.75em;
+        opacity: 0.6;
+        margin-left: 3px;
+      }
+
+      /* Keyboard-focused option highlight */
+      #test-panel .test-options li.kb-focus {
+        border-color: var(--btn-primary) !important;
+        outline: 2px solid var(--btn-primary);
+        outline-offset: -2px;
+      }
+
+      /* ===== TOAST ===== */
+      #toast {
+        position: fixed;
+        bottom: 24px;
+        left: 50%;
+        transform: translateX(-50%) translateY(80px);
+        background: #1f2937;
+        color: #fff;
+        padding: 10px 22px;
+        border-radius: 22px;
+        font-size: 0.88em;
+        font-weight: 600;
+        z-index: 9999;
+        transition: transform 0.3s ease;
+        pointer-events: none;
+        white-space: nowrap;
+      }
+      #toast.show {
+        transform: translateX(-50%) translateY(0);
+      }
+
+      /* ===== RESPONSIVE ===== */
+
+      /* Tablet (max 768px) */
+      @media (max-width: 768px) {
+        body {
+          padding: 0 14px 60px;
+          font-size: 0.97em;
+        }
+
+        h1 {
+          font-size: 1.3em;
+        }
+
+        #toolbar {
+          margin: 0 -14px 18px;
+          padding: 8px 12px;
+          gap: 6px;
+        }
+
+        /* Hide separators on small screens */
+        #toolbar .sep {
+          display: none;
+        }
+
+        /* Toolbar wraps into 2 rows naturally */
+        .toolbar-group {
+          flex-wrap: wrap;
+        }
+
+        .btn {
+          padding: 6px 10px;
+          font-size: 0.8em;
+        }
+
+        .mcq-card {
+          padding: 16px 16px;
+        }
+
+        #test-panel .test-card {
+          height: calc(100vh - 70px);
+        }
+        .test-body {
+          padding: 18px 20px;
+        }
+        #test-panel .test-question {
+          font-size: 1em;
+        }
+
+        #test-setup > div {
+          padding: 20px 18px !important;
+        }
+      }
+
+      /* Mobile (max 480px) */
+      @media (max-width: 480px) {
+        body {
+          padding: 0 10px 70px;
+          font-size: 0.93em;
+        }
+
+        h1 {
+          font-size: 1.15em;
+          line-height: 1.3;
+        }
+        h2 {
+          font-size: 1.05em;
+        }
+
+        /* Toolbar: stack all groups, full width rows */
+        #toolbar {
+          margin: 0 -10px 14px;
+          padding: 8px 10px;
+          gap: 5px;
+        }
+
+        .toolbar-group {
+          width: 100%;
+          justify-content: flex-start;
+        }
+
+        /* Jump input takes remaining space */
+        #jump-input {
+          flex: 1;
+          width: auto;
+          min-width: 0;
+        }
+
+        /* Collapse buttons side by side, equal width */
+        .toolbar-group:nth-child(3) {
+          gap: 5px;
+        }
+        .toolbar-group:nth-child(3) .btn {
+          flex: 1;
+          text-align: center;
+        }
+
+        /* Dark + Test buttons row */
+        #toolbar-right {
+          flex: 1;
+          gap: 6px;
+        }
+        #toolbar-right .btn {
+          flex: 1;
+          text-align: center;
+        }
+
+        /* Cards */
+        .mcq-card {
+          padding: 13px 12px;
+          border-radius: 8px;
+          margin-bottom: 14px;
+        }
+
+        .mcq-question {
+          font-size: 0.97em;
+        }
+
+        .options li {
+          padding: 7px 9px;
+          font-size: 0.92em;
+        }
+
+        .card-header {
+          flex-wrap: wrap;
+          gap: 5px;
+        }
+
+        .explanation {
+          padding: 9px 11px;
+          font-size: 0.88em;
+        }
+
+        .tag {
+          font-size: 0.7em;
+        }
+
+        /* Test card — keep fixed layout on mobile, adjust heights */
+        #test-panel .test-card {
+          height: calc(100vh - 60px);
+          border-radius: 8px;
+        }
+
+        .test-topbar {
+          padding: 8px 12px;
+          gap: 6px;
+        }
+        .test-topbar-actions {
+          gap: 4px;
+        }
+        #test-jump-input {
+          width: 58px;
+          font-size: 0.78em;
+        }
+
+        .test-body {
+          padding: 14px 13px;
+        }
+        #test-panel .test-question {
+          font-size: 0.97em;
+          margin-bottom: 14px;
+        }
+        #test-panel .test-options li {
+          padding: 9px 11px;
+          font-size: 0.92em;
+        }
+
+        #test-panel .test-nav {
+          padding: 10px 13px;
+          gap: 6px;
+        }
+        #test-panel .test-nav .btn {
+          flex: 1;
+          text-align: center;
+          font-size: 0.8em;
+        }
+        .test-nav-hint {
+          font-size: 0.65em;
+        }
+
+        #test-setup > div {
+          padding: 16px 14px !important;
+        }
+        #test-setup label {
+          font-size: 0.85em !important;
+        }
+        #test-setup input,
+        #test-setup select {
+          font-size: 0.92em !important;
+        }
+
+        /* Results */
+        #test-results {
+          padding: 24px 10px;
+        }
+        #test-results .score-circle {
+          width: 100px;
+          height: 100px;
+          font-size: 1.7em;
+        }
+
+        /* Note buttons wrap on tiny screens */
+        .note-btns {
+          flex-wrap: wrap;
+        }
+        .note-btns .btn {
+          flex: 1;
+          min-width: 70px;
+          text-align: center;
+        }
+
+        /* Page header */
+        #page-header {
+          padding-top: 12px;
+        }
+        #page-header p {
+          font-size: 0.85em;
+        }
+
+        /* Toast narrower on mobile */
+        #toast {
+          font-size: 0.82em;
+          padding: 8px 16px;
+          white-space: normal;
+          max-width: 90vw;
+          text-align: center;
+        }
+
+        /* Missing card */
+        .missing {
+          padding: 12px 13px;
+          font-size: 0.85em;
+        }
+      }
+
+      /* Very small screens (max 360px) */
+      @media (max-width: 360px) {
+        body {
+          padding: 0 8px 70px;
+        }
+        h1 {
+          font-size: 1.05em;
+        }
+        .btn {
+          font-size: 0.75em;
+          padding: 5px 8px;
+        }
+        .mcq-card {
+          padding: 11px 10px;
+        }
+        .options li {
+          font-size: 0.88em;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ===== STICKY TOOLBAR ===== -->
+    <div id="toolbar">
+      <!-- Home button (add as first item in the toolbar) -->
+      <div class="toolbar-group">
+        <a
+          href="index.html"
+          class="btn btn-secondary"
+          style="text-decoration: none; display: inline-block"
+        >
+          🏠 Home
+        </a>
+      </div>
+
+      <div class="sep"></div>
+      <!-- Jump to Q -->
+      <div class="toolbar-group">
+        <input
+          id="jump-input"
+          type="number"
+          min="1"
+          max="200"
+          placeholder="Q #"
+          title="Jump to question number"
+        />
+        <button class="btn btn-primary" onclick="jumpToQ()">Jump</button>
+      </div>
+
+      <div class="sep"></div>
+
+      <!-- Collapse -->
+      <div class="toolbar-group">
+        <button class="btn btn-secondary" onclick="collapseAll()">
+          📕 Collapse All
+        </button>
+        <button class="btn btn-secondary" onclick="expandAll()">
+          📖 Expand All
+        </button>
+      </div>
+
+      <div class="sep"></div>
+
+      <!-- Dark mode + Test mode (grouped for mobile) -->
+      <div class="toolbar-group" id="toolbar-right">
+        <button
+          class="btn btn-secondary"
+          id="dark-toggle"
+          onclick="toggleDark()"
+        >
+          🌙 Dark Mode
+        </button>
+        <button class="btn btn-danger" onclick="enterTestMode()">
+          🧪 Test Mode
+        </button>
+      </div>
+    </div>
+
+    <!-- ===== TEST PANEL (hidden in notes mode) ===== -->
+    <div id="test-panel">
+      <div id="page-header" style="padding-top: 0">
+        <h1>
+          ⚛️ Physics — MCQ Notes
+          <span class="test-mode-label">TEST MODE</span>
+        </h1>
+      </div>
+
+      <div id="test-setup">
+        <div
+          style="
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 28px 30px;
+            box-shadow: 0 4px 16px var(--shadow);
+            margin-bottom: 20px;
+          "
+        >
+          <h2 style="color: var(--heading); margin-top: 0">
+            ⚙️ Configure Test
+          </h2>
+          <div
+            style="
+              display: flex;
+              flex-wrap: wrap;
+              gap: 16px;
+              margin-bottom: 20px;
+            "
+          >
+            <label
+              style="
+                display: flex;
+                flex-direction: column;
+                gap: 4px;
+                font-size: 0.9em;
+                font-weight: 600;
+              "
+            >
+              Number of Questions
+              <input
+                id="test-count"
+                type="number"
+                value="20"
+                min="5"
+                max="200"
+                style="
+                  width: 100px;
+                  padding: 6px 10px;
+                  border-radius: 7px;
+                  border: 1.5px solid var(--input-border);
+                  background: var(--input-bg);
+                  color: var(--text);
+                  font-size: 1em;
+                  outline: none;
+                "
+              />
+            </label>
+            <label
+              style="
+                display: flex;
+                flex-direction: column;
+                gap: 4px;
+                font-size: 0.9em;
+                font-weight: 600;
+              "
+            >
+              Order
+              <select
+                id="test-order"
+                style="
+                  padding: 6px 10px;
+                  border-radius: 7px;
+                  border: 1.5px solid var(--input-border);
+                  background: var(--input-bg);
+                  color: var(--text);
+                  font-size: 1em;
+                  outline: none;
+                  cursor: pointer;
+                "
+              >
+                <option value="shuffle">🔀 Shuffle (Random)</option>
+                <option value="sequential">📋 Sequential (1→200)</option>
+              </select>
+            </label>
+          </div>
+          <div style="display: flex; gap: 10px; flex-wrap: wrap">
+            <button class="btn btn-danger" onclick="startTest()">
+              ▶ Start Test
+            </button>
+            <button class="btn btn-secondary" onclick="exitTestMode()">
+              ✖ Back to Notes
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div id="test-active" style="display: none">
+        <div class="test-card">
+          <!-- Fixed top bar: progress + controls -->
+          <div class="test-topbar">
+            <div class="test-progress" id="test-progress-label">
+              Question 1 of 20
+            </div>
+            <div class="test-topbar-actions">
+              <input
+                id="test-jump-input"
+                type="number"
+                min="1"
+                placeholder="Go to #"
+                title="Jump to test question number"
+              />
+              <button
+                class="btn btn-secondary test-jump-btn"
+                onclick="testJump()"
+              >
+                Go
+              </button>
+              <button
+                class="btn btn-secondary"
+                id="dark-toggle-test"
+                onclick="toggleDark()"
+              >
+                🌙
+              </button>
+              <button class="btn btn-danger" onclick="exitTestMode()">
+                ✖ Exit
+              </button>
+            </div>
+          </div>
+
+          <!-- Scrollable question area -->
+          <div class="test-body">
+            <div class="tag" id="test-q-tag">MCQ</div>
+            <div class="test-question" id="test-question"></div>
+            <ul class="test-options" id="test-options"></ul>
+            <div class="test-explanation" id="test-explanation"></div>
+          </div>
+
+          <!-- Fixed bottom nav -->
+          <div class="test-nav">
+            <button
+              class="btn btn-secondary"
+              id="btn-prev"
+              onclick="testNav(-1)"
+            >
+              ← Prev <span class="kbd-hint">◀</span>
+            </button>
+            <div class="test-nav-hint">↑↓ choose • Enter confirm</div>
+            <button class="btn btn-primary" id="btn-next" onclick="testNav(1)">
+              Next → <span class="kbd-hint">▶</span>
+            </button>
+            <button
+              class="btn btn-success"
+              id="btn-finish"
+              onclick="finishTest()"
+              style="display: none"
+            >
+              🏁 Finish
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div id="test-results">
+        <div class="score-circle" id="score-display">0<span>/ 0</span></div>
+        <h2 id="result-msg"></h2>
+        <p id="result-detail" style="color: var(--text-muted)"></p>
+        <div
+          style="
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 16px;
+          "
+        >
+          <button class="btn btn-primary" onclick="retryTest()">
+            🔄 Retry
+          </button>
+          <button class="btn btn-secondary" onclick="exitTestMode()">
+            📖 Back to Notes
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== NOTES CONTENT ===== -->
+    <div id="notes-content">
+      <div id="page-header">
+        <h1>⚛️ Physics — MCQ Notes</h1>
+        <p>
+          <em
+            >Covers: Nuclear Physics, Electricity & Magnetism, SHM & Waves,
+            Optics, Mechanics, Thermodynamics & AC Circuits</em
+          >
+        </p>
+      </div>
+
+      <div class="mcq-card">
+        <span class="tag">MCQ 1</span>
+        <div class="mcq-question">
+          Q1. Moderator is used in a nuclear reactor to:
+        </div>
+        <ul class="options">
+          <li class="correct">A) Slow down fast neutrons</li>
+          <li>B) Speed up the neutrons</li>
+          <li>C) Both A and B</li>
+          <li>D) None of these</li>
+        </ul>
+        <div class="explanation">
+          In a nuclear fission reactor, fast neutrons released during fission
+          are too energetic to efficiently trigger further fission in U-235. A
+          moderator (commonly water, heavy water, or graphite) slows these fast
+          neutrons down to thermal speeds through elastic collisions, increasing
+          the chance they're captured and sustain the chain reaction.
+        </div>
+      </div>
+      <div class="mcq-card">
+        <span class="tag">MCQ 2</span>
+        <div class="mcq-question">
+          Q2. Resistivity of a material depends on:
+        </div>
+        <ul class="options">
+          <li>A) Material</li>
+          <li>B) Temperature</li>
+          <li>C) Length</li>
+          <li class="correct">D) Both A and B</li>
+        </ul>
+        <div class="explanation">
+          Resistivity (ρ) is an intrinsic property — it depends on what the
+          material is made of and its temperature (which affects electron
+          mobility), but not on the conductor's geometry. Resistance (R = ρL/A)
+          depends on length and area, but resistivity itself doesn't.
+        </div>
+      </div>
+      <div class="mcq-card">
+        <span class="tag">MCQ 3</span>
+        <div class="mcq-question">Q3. The electron volt (eV) is a unit of:</div>
+        <ul class="options">
+          <li>A) Potential</li>
+          <li class="correct">B) Energy</li>
+          <li>C) Power</li>
+          <li>D) Dispersion</li>
+        </ul>
+        <div class="explanation">
+          One electron volt is the kinetic energy gained by an electron when
+          accelerated through a potential difference of one volt. It's a unit of
+          energy, used because SI joules are inconveniently large at atomic and
+          nuclear scales.
+        </div>
+      </div>
+      <div class="mcq-card">
+        <span class="tag">MCQ 4</span>
+        <div class="mcq-question">
+          Q4. If a ball is dropped from a height, which quantity is conserved
+          throughout the fall (ignoring air resistance)?
+        </div>
+        <ul class="options">
+          <li>A) Kinetic energy</li>
+          <li>B) Potential energy</li>
+          <li class="correct">C) Total mechanical energy</li>
+          <li>D) None of these</li>
+        </ul>
+        <div class="explanation">
+          As the ball falls, potential energy converts into kinetic energy, so
+          neither stays constant on its own. With no non-conservative forces
+          like air resistance, the total mechanical energy (KE + PE) remains
+          constant throughout.
+        </div>
+      </div>
+      <div class="mcq-card">
+        <span class="tag">MCQ 5</span>
+        <div class="mcq-question">
+          Q5. Which of the following is NOT an example of simple harmonic motion
+          (SHM)?
+        </div>
+        <ul class="options">
+          <li>A) Motion of a spring</li>
+          <li class="correct">B) Two trains moving away from each other</li>
+          <li>C) A plucked guitar string</li>
+          <li>D) Vibration of an elastic band</li>
+        </ul>
+        <div class="explanation">
+          SHM needs a restoring force proportional to displacement, producing
+          periodic oscillation about equilibrium. A spring, plucked string, and
+          elastic band all oscillate this way. Two trains moving apart is just
+          straight-line motion with no restoring force — not periodic at all.
+        </div>
+      </div>
+      <div class="mcq-card">
+        <span class="tag">MCQ 6</span>
+        <div class="mcq-question">
+          Q6. Newton's third law of motion (every action has an equal and
+          opposite reaction) is essentially a consequence of the law of
+          conservation of:
+        </div>
+        <ul class="options">
+          <li>A) Mass</li>
+          <li>B) Energy</li>
+          <li class="correct">C) Momentum</li>
+          <li>D) Charge</li>
+        </ul>
+        <div class="explanation">
+          When two bodies interact, the forces they exert on each other are
+          equal and opposite so that the total momentum of the isolated system
+          stays unchanged — this is conservation of momentum expressed through
+          Newton's third law.
+        </div>
+      </div>
+      <div class="mcq-card">
+        <span class="tag">MCQ 7</span>
+        <div class="mcq-question">Q7. A laser produces light that is:</div>
+        <ul class="options">
+          <li>A) Monochromatic</li>
+          <li>B) Coherent</li>
+          <li>C) Highly directional</li>
+          <li class="correct">D) All of these</li>
+        </ul>
+        <div class="explanation">
+          Laser light is monochromatic (single wavelength), coherent (waves stay
+          in phase with a fixed phase relationship), and highly directional
+          (travels as a narrow, barely-diverging beam) — unlike ordinary light
+          sources, which have all three properties combined.
+        </div>
+      </div>
+      <div class="mcq-card">
+        <span class="tag">MCQ 8</span>
+        <div class="mcq-question">Q8. Joule per coulomb is the unit of:</div>
+        <ul class="options">
+          <li>A) Watt</li>
+          <li class="correct">B) Volt</li>
+          <li>C) Weber</li>
+          <li>D) Weber/m²</li>
+        </ul>
+        <div class="explanation">
+          Electric potential (voltage) is energy per unit charge, V = W/Q,
+          measured in joules per coulomb — which is exactly the definition of
+          the volt.
+        </div>
+      </div>
+      <div class="mcq-card">
+        <span class="tag">MCQ 9</span>
+        <div class="mcq-question">
+          Q9. The force on a charge moving in a magnetic field is maximum when
+          the angle between B and v is:
+        </div>
+        <ul class="options">
+          <li>A) 45°</li>
+          <li>B) 0°</li>
+          <li class="correct">C) 90°</li>
+          <li>D) 180°</li>
+        </ul>
+        <div class="explanation">
+          The magnetic force is F = qvB sinθ, which is maximum when sinθ = 1,
+          i.e. θ = 90° (charge moving perpendicular to the field). At 0° or
+          180°, sinθ = 0 and there's no force at all.
+        </div>
+      </div>
+      <div class="mcq-card">
+        <span class="tag">MCQ 10</span>
+        <div class="mcq-question">Q10. The light year is a unit of:</div>
+        <ul class="options">
+          <li>A) Time</li>
+          <li>B) Energy</li>
+          <li class="correct">C) Distance</li>
+          <li>D) Velocity</li>
+        </ul>
+        <div class="explanation">
+          A light year is the distance light travels in vacuum in one year
+          (about 9.46 × 10¹² km). Despite the word "year" in its name, it
+          measures distance, not time — a common point of confusion.
+        </div>
+      </div>
+      <div class="mcq-card">
+        <span class="tag">MCQ 11</span>
+        <div class="mcq-question">
+          Q11. The time period of a simple pendulum depends upon:
+        </div>
+        <ul class="options">
+          <li>A) Mass of the bob</li>
+          <li class="correct">B) Length of the pendulum</li>
+          <li>C) Amplitude of swing</li>
+          <li>D) Material of the bob</li>
+        </ul>
+        <div class="explanation">
+          For small oscillations, T = 2π√(L/g). The period depends only on the
+          length and local gravity — it's independent of the bob's mass and, for
+          small angles, the amplitude.
+        </div>
+      </div>
+      <div class="mcq-card">
+        <span class="tag">MCQ 12</span>
+        <div class="mcq-question">
+          Q12. Which of the following is a dimensionless quantity?
+        </div>
+        <ul class="options">
+          <li>A) Mass</li>
+          <li class="correct">B) Angle</li>
+          <li>C) Length</li>
+          <li>D) Time</li>
+        </ul>
+        <div class="explanation">
+          Angle (in radians) is arc length divided by radius — both lengths — so
+          the units cancel, making it dimensionless. Mass, length, and time are
+          all fundamental dimensional quantities.
+        </div>
+      </div>
+      <div class="mcq-card">
+        <span class="tag">MCQ 13</span>
+        <div class="mcq-question">
+          Q13. Fringe width in Young's double-slit experiment depends upon:
+        </div>
+        <ul class="options">
+          <li>A) Slit separation</li>
+          <li>B) Wavelength of light</li>
+          <li>C) Distance between slits and screen</li>
+          <li class="correct">D) All of these</li>
+        </ul>
+        <div class="explanation">
+          Fringe width is β = λD/d, where λ is wavelength, D is slit-to-screen
+          distance, and d is slit separation — it depends on all three.
+        </div>
+      </div>
+      <div class="mcq-card">
+        <span class="tag">MCQ 14</span>
+        <div class="mcq-question">Q14. The SI unit of electric current is:</div>
+        <ul class="options">
+          <li>A) Coulomb</li>
+          <li class="correct">B) Ampere</li>
+          <li>C) Volt</li>
+          <li>D) Ohm</li>
+        </ul>
+        <div class="explanation">
+          The ampere is the SI base unit of current, defined as charge flow per
+          unit time (I = Q/t). Coulomb is charge, volt is potential difference,
+          and ohm is resistance.
+        </div>
+      </div>
+      <div class="mcq-card">
+        <span class="tag">MCQ 15</span>
+        <div class="mcq-question">
+          Q15. The process in which a heavy nucleus splits into smaller
+          fragments is called:
+        </div>
+        <ul class="options">
+          <li class="correct">A) Fission</li>
+          <li>B) Fusion</li>
+          <li>C) Chemical reaction</li>
+          <li>D) Endothermic reaction</li>
+        </ul>
+        <div class="explanation">
+          Nuclear fission is the splitting of a heavy, unstable nucleus (like
+          Uranium-235) into lighter nuclei, releasing large amounts of energy —
+          the process used in nuclear reactors. Fusion is the opposite: light
+          nuclei combining into a heavier one.
+        </div>
+      </div>
+      <div class="mcq-card">
+        <span class="tag">MCQ 16</span>
+        <div class="mcq-question">Q16. The entropy of an isolated system:</div>
+        <ul class="options">
+          <li>A) Always remains the same</li>
+          <li>B) Always decreases</li>
+          <li class="correct">C) Remains the same or increases</li>
+          <li>D) Always increases</li>
+        </ul>
+        <div class="explanation">
+          By the second law of thermodynamics, entropy of an isolated system
+          never decreases — it stays constant for ideal reversible processes and
+          increases for real irreversible ones. So it remains the same or
+          increases.
+        </div>
+      </div>
+      <div class="mcq-card">
+        <span class="tag">MCQ 17</span>
+        <div class="mcq-question">
+          Q17. The distance between two consecutive dark and bright fringes
+          (successive maxima/minima) is called:
+        </div>
+        <ul class="options">
+          <li>A) Slit separation</li>
+          <li>B) Position of fringes</li>
+          <li>C) Screen distance</li>
+          <li class="correct">D) Fringe spacing (fringe width)</li>
+        </ul>
+        <div class="explanation">
+          This spacing is the fringe width, given by β = λD/d in a double-slit
+          interference pattern.
+        </div>
+      </div>
+      <div class="mcq-card">
+        <span class="tag">MCQ 18</span>
+        <div class="mcq-question">
+          Q18. The length of an astronomical telescope (in normal adjustment)
+          is:
+        </div>
+        <ul class="options">
+          <li class="correct">A) fo + fe</li>
+          <li>B) fo × fe</li>
+          <li>C) 2fo</li>
+          <li>D) None of these</li>
+        </ul>
+        <div class="explanation">
+          In normal adjustment, the final image forms at infinity, requiring the
+          objective's focal point to coincide with the eyepiece's focal point.
+          So the tube length equals the sum of the two focal lengths, fo + fe.
+        </div>
+      </div>
+      <div class="mcq-card">
+        <span class="tag">MCQ 19</span>
+        <div class="mcq-question">
+          Q19. A body performing uniform circular motion has:
+        </div>
+        <ul class="options">
+          <li>A) Constant velocity</li>
+          <li>B) Constant acceleration</li>
+          <li class="correct">C) Variable (centripetal) acceleration</li>
+          <li>D) Zero acceleration</li>
+        </ul>
+        <div class="explanation">
+          In uniform circular motion, speed is constant, but velocity (a vector)
+          keeps changing direction, so there's a centripetal acceleration
+          directed toward the center. Its magnitude is constant but its
+          direction keeps changing, making it a variable vector quantity.
+        </div>
+      </div>
+      <div class="mcq-card">
+        <span class="tag">MCQ 20</span>
+        <div class="mcq-question">
+          Q20. For a planet orbiting the Sun, which quantity remains constant?
+        </div>
+        <ul class="options">
+          <li>A) Velocity</li>
+          <li class="correct">B) Angular momentum</li>
+          <li>C) Gravitational force</li>
+          <li>D) Radius of orbit</li>
+        </ul>
+        <div class="explanation">
+          Gravity acts along the line joining planet and Sun (a central force),
+          so it produces no torque about the Sun. By conservation of angular
+          momentum, the planet's angular momentum stays constant even as its
+          speed and radius vary (Kepler's second law).
+        </div>
+      </div>
+      <div class="mcq-card">
+        <span class="tag">MCQ 21</span>
+        <div class="mcq-question">
+          Q21. A magnetic field is NOT produced by:
+        </div>
+        <ul class="options">
+          <li>A) A charge in motion</li>
+          <li class="correct">B) A charge at rest</li>
+          <li>C) A current-carrying conductor</li>
+          <li>D) None of the above</li>
+        </ul>
+        <div class="explanation">
+          Magnetic fields arise from moving charges (currents). A stationary
+          charge produces only an electric field, not a magnetic one.
+        </div>
+      </div>
+      <div class="mcq-card">
+        <span class="tag">MCQ 22</span>
+        <div class="mcq-question">
+          Q22. Which of the following does NOT support the wave nature of light?
+        </div>
+        <ul class="options">
+          <li>A) Diffraction</li>
+          <li>B) Polarization</li>
+          <li>C) Reflection</li>
+          <li class="correct">D) Compton effect</li>
+        </ul>
+        <div class="explanation">
+          Diffraction and polarization are classic wave phenomena, and
+          reflection fits both wave and particle pictures. The Compton effect
+          involves photons behaving as particles colliding with electrons — it's
+          evidence for light's particle (quantum) nature, not its wave nature.
+        </div>
+      </div>
+      <div class="mcq-card">
+        <span class="tag">MCQ 23</span>
+        <div class="mcq-question">
+          Q23. The rate of change of linear momentum is defined as:
+        </div>
+        <ul class="options">
+          <li>A) Torque</li>
+          <li>B) Mass</li>
+          <li>C) Inertia</li>
+          <li class="correct">D) Force</li>
+        </ul>
+        <div class="explanation">
+          Newton's second law states F = dp/dt — force is the rate of change of
+          linear momentum. (Torque, by contrast, is the rate of change of
+          angular momentum.)
+        </div>
+      </div>
+      <div class="mcq-card">
+        <span class="tag">MCQ 24</span>
+        <div class="mcq-question">Q24. One electron volt is equal to:</div>
+        <ul class="options">
+          <li>A) 1 joule</li>
+          <li>B) 1 watt-second</li>
+          <li class="correct">C) 1.6 × 10⁻¹⁹ joule</li>
+          <li>D) None of these</li>
+        </ul>
+        <div class="explanation">
+          1 eV is the energy gained by one electron (charge 1.6 × 10⁻¹⁹ C)
+          accelerated through a 1-volt potential difference, working out to 1.6
+          × 10⁻¹⁹ joules.
+        </div>
+      </div>
+      <div class="mcq-card">
+        <span class="tag">MCQ 25</span>
+        <div class="mcq-question">
+          Q25. The hindrance to the flow of a fluid, offered by the fluid
+          itself, is called:
+        </div>
+        <ul class="options">
+          <li>A) Resistivity</li>
+          <li>B) Permeability</li>
+          <li class="correct">C) Viscosity</li>
+          <li>D) None of these</li>
+        </ul>
+        <div class="explanation">
+          Viscosity is the internal friction between adjacent fluid layers as
+          they move past each other, resisting flow. Resistivity relates to
+          electrical conduction; permeability relates to magnetic materials.
+        </div>
+      </div>
+      <div class="mcq-card">
+        <span class="tag">MCQ 26</span>
+        <div class="mcq-question">
+          Q26. A Vernier caliper can measure to an accuracy of:
+        </div>
+        <ul class="options">
+          <li>A) 0.1 cm</li>
+          <li>B) 1 mm</li>
+          <li class="correct">C) 0.01 cm</li>
+          <li>D) 0.001 cm</li>
+        </ul>
+        <div class="explanation">
+          A standard Vernier caliper has a least count of 0.01 cm, found by
+          dividing the main scale's smallest division by the number of Vernier
+          scale divisions.
+        </div>
+      </div>
+      <div class="mcq-card">
+        <span class="tag">MCQ 27</span>
+        <div class="mcq-question">
+          Q27. The maximum height (H) reached in projectile motion is given by:
+        </div>
+        <ul class="options">
+          <li class="correct">A) H = (V₀² sin²θ)/2g</li>
+          <li>B) H = (V₀² sin2θ)/2g</li>
+          <li>C) H = (V₀² cos²θ)/g</li>
+          <li>D) H = V₀²/2g</li>
+        </ul>
+        <div class="explanation">
+          The vertical component of initial velocity is V₀sinθ. Using v² = u² −
+          2gH with final vertical velocity zero at the peak, H = (V₀sinθ)²/2g =
+          (V₀²sin²θ)/2g.
+        </div>
+      </div>
+      <div class="mcq-card">
+        <span class="tag">MCQ 28</span>
+        <div class="mcq-question">Q28. A choke coil has:</div>
+        <ul class="options">
+          <li>A) High resistance and high inductance</li>
+          <li class="correct">B) Low resistance and high inductance</li>
+          <li>C) Low resistance and low inductance</li>
+          <li>D) None of these</li>
+        </ul>
+        <div class="explanation">
+          A choke coil limits AC current using inductive reactance while wasting
+          minimal power as heat. It's built with thick, low-resistance wire
+          wound on an iron core to give high inductance with low resistance.
+        </div>
+      </div>
+      <div class="mcq-card">
+        <span class="tag">MCQ 29</span>
+        <div class="mcq-question">
+          Q29. The distance between two consecutive nodes (or two consecutive
+          antinodes) in a stationary wave is:
+        </div>
+        <ul class="options">
+          <li class="correct">A) λ/2</li>
+          <li>B) λ</li>
+          <li>C) λ/4</li>
+          <li>D) 2λ</li>
+        </ul>
+        <div class="explanation">
+          In a standing wave, nodes and antinodes alternate every λ/4, but two
+          consecutive nodes (or two consecutive antinodes) of the same type are
+          separated by half a wavelength, λ/2.
+        </div>
+      </div>
+      <div class="mcq-card">
+        <span class="tag">MCQ 30</span>
+        <div class="mcq-question">
+          Q30. Artificial gravity in a spaceship can be produced by:
+        </div>
+        <ul class="options">
+          <li>A) Translatory motion</li>
+          <li>B) Vibratory motion</li>
+          <li>C) Orbital motion</li>
+          <li class="correct">D) Spin (rotational) motion</li>
+        </ul>
+        <div class="explanation">
+          Spinning a spaceship about its axis pushes objects toward the outer
+          wall via the centripetal effect, mimicking the sensation of gravity —
+          the basis for artificial-gravity designs like a rotating space
+          station.
+        </div>
+      </div>
+      <div class="mcq-card">
+        <span class="tag">MCQ 31</span>
+        <div class="mcq-question">
+          Q31. We distinguish musical sounds of the same pitch and loudness
+          (e.g. same note from different instruments) by their:
+        </div>
+        <ul class="options">
+          <li>A) Amplitude</li>
+          <li>B) Frequency</li>
+          <li class="correct">C) Quality (timbre)</li>
+          <li>D) Pitch</li>
+        </ul>
+        <div class="explanation">
+          Quality (timbre) lets us tell apart two sounds of the same pitch and
+          loudness, arising from differences in the harmonic/overtone content
+          each instrument produces.
+        </div>
+      </div>
+      <div class="mcq-card">
+        <span class="tag">MCQ 32</span>
+        <div class="mcq-question">
+          Q32. The magnetic field inside a toroid is given by:
+        </div>
+        <ul class="options">
+          <li>A) B = μ₀nI</li>
+          <li class="correct">B) B = μ₀nI/2πr</li>
+          <li>C) B = μ₀nI/2</li>
+          <li>D) B = μ₀nI/2a</li>
+        </ul>
+        <div class="explanation">
+          Applying Ampère's law around a circular path of radius r inside a
+          toroid gives B = μ₀NI/(2πr), where N is the total number of turns and
+          I is the current — matching this option.
+        </div>
+      </div>
+      <div class="mcq-card">
+        <span class="tag">MCQ 33</span>
+        <div class="mcq-question">
+          Q33. If the p-type side (anode) of a diode is connected to the
+          positive terminal and the n-type side (cathode) to the negative
+          terminal of a battery, the diode is:
+        </div>
+        <ul class="options">
+          <li class="correct">A) Forward biased</li>
+          <li>B) Reverse biased</li>
+          <li>C) Both</li>
+          <li>D) None</li>
+        </ul>
+        <div class="explanation">
+          Connecting p-type to positive and n-type to negative narrows the
+          depletion region and lets current flow easily — this connection is, by
+          definition, forward bias.
+        </div>
+      </div>
+      <div class="mcq-card">
+        <span class="tag">MCQ 34</span>
+        <div class="mcq-question">Q34. A generator converts:</div>
+        <ul class="options">
+          <li>A) Electrical energy into heat energy</li>
+          <li class="correct">B) Mechanical energy into electrical energy</li>
+          <li>C) Electrical energy into light energy</li>
+          <li>D) Electrical energy into mechanical energy</li>
+        </ul>
+        <div class="explanation">
+          A generator (dynamo) works by electromagnetic induction, converting
+          mechanical energy (rotation of a coil or magnet) into electrical
+          energy. A motor does the reverse.
+        </div>
+      </div>
+      <div class="mcq-card">
+        <span class="tag">MCQ 35</span>
+        <div class="mcq-question">
+          Q35. The first law of thermodynamics represents the conservation of:
+        </div>
+        <ul class="options">
+          <li class="correct">A) Energy</li>
+          <li>B) Mass</li>
+          <li>C) Charge</li>
+          <li>D) Momentum</li>
+        </ul>
+        <div class="explanation">
+          The first law (ΔU = Q − W) is the law of conservation of energy
+          applied to thermodynamic systems — energy transfers as heat or work
+          but is never created or destroyed.
+        </div>
+      </div>
+      <div class="mcq-card">
+        <span class="tag">MCQ 36</span>
+        <div class="mcq-question">
+          Q36. The amount of heat required to raise the temperature of 1 kg of a
+          substance by 1°C is called its:
+        </div>
+        <ul class="options">
+          <li>A) Heat capacity</li>
+          <li>B) Molar heat capacity</li>
+          <li>C) Latent heat</li>
+          <li class="correct">D) Specific heat capacity</li>
+        </ul>
+        <div class="explanation">
+          Specific heat capacity is defined per unit mass (1 kg) per degree
+          rise. Heat capacity (without "specific") refers to a whole object's
+          total mass, molar heat capacity is per mole, and latent heat relates
+          to phase changes at constant temperature.
+        </div>
+      </div>
+      <div class="mcq-card">
+        <span class="tag">MCQ 37</span>
+        <div class="mcq-question">
+          Q37. If the mass of the bob of a simple pendulum is doubled, its time
+          period will:
+        </div>
+        <ul class="options">
+          <li class="correct">A) Remain the same</li>
+          <li>B) Become twice</li>
+          <li>C) Become half</li>
+          <li>D) Become four times</li>
+        </ul>
+        <div class="explanation">
+          T = 2π√(L/g) has no dependence on mass at all — only length and
+          gravity matter. Doubling the mass changes nothing about the period.
+        </div>
+      </div>
+      <div class="mcq-card">
+        <span class="tag">MCQ 38</span>
+        <div class="mcq-question">
+          Q38. The coefficient of static friction is generally:
+        </div>
+        <ul class="options">
+          <li class="correct">
+            A) Greater than the coefficient of kinetic friction
+          </li>
+          <li>B) Smaller than the coefficient of kinetic friction</li>
+          <li>C) Equal to the coefficient of kinetic friction</li>
+          <li>D) The reciprocal of the coefficient of kinetic friction</li>
+        </ul>
+        <div class="explanation">
+          It typically takes more force to start an object moving from rest than
+          to keep it sliding once moving, which is why the coefficient of static
+          friction (μs) is usually slightly greater than kinetic friction (μk).
+        </div>
+      </div>
+      <div class="mcq-card">
+        <span class="tag">MCQ 39</span>
+        <div class="mcq-question">
+          Q39. According to Bragg's law, the condition for diffraction of X-rays
+          from a crystal is:
+        </div>
+        <ul class="options">
+          <li>A) d sinθ = mπ</li>
+          <li>B) d sinθ = (m + ½)π</li>
+          <li class="correct">C) 2d sinθ = mλ</li>
+          <li>D) None of these</li>
+        </ul>
+        <div class="explanation">
+          Bragg's law states that constructive interference of X-rays reflected
+          from successive crystal planes occurs when 2d sinθ = mλ, where d is
+          the spacing between planes, θ is the glancing angle, m is an integer
+          order, and λ is the X-ray wavelength.
+        </div>
+      </div>
+      <div class="mcq-card">
+        <span class="tag">MCQ 40</span>
+        <div class="mcq-question">
+          Q40. Which of the following is a vector quantity?
+        </div>
+        <ul class="options">
+          <li>A) Electric flux</li>
+          <li>B) Magnetic flux</li>
+          <li>C) EMF</li>
+          <li class="correct">D) Electric field intensity</li>
+        </ul>
+        <div class="explanation">
+          Electric flux, magnetic flux, and EMF are all scalar quantities
+          (magnitude only). Electric field intensity (E) has both magnitude and
+          direction at every point in space, making it a vector.
+        </div>
+      </div>
+      <div class="mcq-card">
+        <span class="tag">MCQ 41</span>
+        <div class="mcq-question">
+          Q41. The phase angle (φ) between voltage and current in a series AC
+          circuit containing resistance R and inductance L is given by:
+        </div>
+        <ul class="options">
+          <li class="correct">A) φ = tan⁻¹(X_L/R)</li>
+          <li>B) φ = tan(X_L/R)</li>
+          <li>C) φ = tan⁻¹(R/X_L)</li>
+          <li>D) φ = tan⁻¹[(X_L−X_C)/R]</li>
+        </ul>
+        <div class="explanation">
+          In a series R-L circuit, current lags voltage by φ = tan⁻¹(X_L/R),
+          where X_L = ωL is the inductive reactance — this follows from the
+          impedance triangle where R is the base and X_L is the perpendicular
+          side. (Option D applies to a full R-L-C circuit, not this one.)
+        </div>
+      </div>
+      <hr />
+      <p
+        style="
+          text-align: center;
+          color: #6366f1;
+          font-size: 0.9em;
+          font-weight: bold;
+        "
+        id="page-footer"
+      >
+        🎓 Total: 41 MCQs | Topics: Nuclear Physics • Electricity & Magnetism •
+        Oscillations & Waves • Optics • Mechanics • Thermodynamics • AC Circuits
+      </p>
+    </div>
+    <!-- end notes-content -->
+
+    <!-- TOAST -->
+    <div id="toast"></div>
+
+    <script>
+      // =====================================================
+      //  DATA EXTRACTION — read all .mcq-card elements
+      // =====================================================
+      const allCards = Array.from(document.querySelectorAll(".mcq-card"));
+
+      // Build a structured data array from the DOM cards
+      const mcqData = allCards.map((card, idx) => {
+        const tagEl = card.querySelector(".tag");
+        const qEl = card.querySelector(".mcq-question");
+        const expEl = card.querySelector(".explanation");
+        const opts = Array.from(card.querySelectorAll(".options li"));
+
+        const tag = tagEl ? tagEl.innerText.trim() : `MCQ ${idx + 1}`;
+        const qNum = parseInt(tag.replace(/\D/g, "")) || idx + 1;
+        const question = qEl ? qEl.innerText.trim() : "(no question text)";
+        const explanation = expEl ? expEl.innerHTML : "";
+
+        // Inline answer divs (some cards use .correct div instead of li)
+        const inlineAnswerEl = card.querySelector("div.correct");
+
+        let options = [];
+        let correctIndex = -1;
+
+        if (opts.length > 0) {
+          opts.forEach((li, i) => {
+            const isCorrect = li.classList.contains("correct");
+            const text = li.innerText.trim();
+            options.push({ text, correct: isCorrect });
+            if (isCorrect) correctIndex = i;
+          });
+        } else if (inlineAnswerEl) {
+          // Cards with only an answer div (no multiple choice listed)
+          const ansText = inlineAnswerEl.innerText.trim();
+          options = [{ text: ansText, correct: true }];
+          correctIndex = 0;
+        }
+
+        return { idx, qNum, tag, question, options, correctIndex, explanation };
+      });
+
+      // =====================================================
+      //  INIT — enhance each card in notes mode
+      // =====================================================
+      allCards.forEach((card, i) => {
+        const data = mcqData[i];
+
+        // Assign an id for jump-to
+        card.id = `card-q${data.qNum}`;
+
+        // ---- Build card-header ----
+        const tagEl = card.querySelector(".tag");
+
+        const headerDiv = document.createElement("div");
+        headerDiv.className = "card-header";
+
+        const leftDiv = document.createElement("div");
+        leftDiv.className = "card-header-left";
+        if (tagEl) leftDiv.appendChild(tagEl);
+
+        // Collapse toggle button
+        const colBtn = document.createElement("button");
+        colBtn.className = "collapse-toggle";
+        colBtn.textContent = "▼ Hide";
+        colBtn.onclick = () => toggleCard(card, colBtn);
+        leftDiv.appendChild(colBtn);
+
+        const actionsDiv = document.createElement("div");
+        actionsDiv.className = "card-actions";
+
+        // Bookmark button
+        const bmBtn = document.createElement("button");
+        bmBtn.className = "icon-btn";
+        bmBtn.title = "Bookmark this question";
+        bmBtn.innerHTML = "🔖";
+        bmBtn.onclick = () => toggleBookmark(data.qNum, card, bmBtn);
+        actionsDiv.appendChild(bmBtn);
+
+        // Note button
+        const noteBtn = document.createElement("button");
+        noteBtn.className = "icon-btn";
+        noteBtn.title = "Add/edit note";
+        noteBtn.innerHTML = "📝";
+        noteBtn.onclick = () => toggleNoteEditor(data.qNum, card);
+        actionsDiv.appendChild(noteBtn);
+
+        headerDiv.appendChild(leftDiv);
+        headerDiv.appendChild(actionsDiv);
+        card.insertBefore(headerDiv, card.firstChild);
+
+        // ---- Collapsible body ----
+        const body = document.createElement("div");
+        body.className = "collapsible";
+
+        // Pull question out BEFORE the loop so it never gets moved into body
+        const questionEl = card.querySelector(".mcq-question");
+        if (questionEl) card.insertBefore(questionEl, headerDiv.nextSibling);
+
+        // Now move all remaining children (except headerDiv and questionEl) into body
+        while (card.children.length > 1) {
+          const child = card.children[1];
+          if (child === questionEl) {
+            // Skip it — grab the next sibling instead
+            if (card.children[2]) {
+              body.appendChild(card.children[2]);
+            } else {
+              break;
+            }
+          } else {
+            body.appendChild(child);
+          }
+        }
+
+        // ---- User note area ----
+        const noteArea = document.createElement("div");
+        noteArea.className = "user-note-area";
+        noteArea.id = `note-area-${data.qNum}`;
+
+        const noteDisplay = document.createElement("div");
+        noteDisplay.className = "user-note-display";
+        noteDisplay.id = `note-display-${data.qNum}`;
+        noteDisplay.style.display = "none";
+
+        const noteTA = document.createElement("textarea");
+        noteTA.className = "user-note-textarea";
+        noteTA.id = `note-ta-${data.qNum}`;
+        noteTA.placeholder = "Type your note here…";
+
+        const noteBtns = document.createElement("div");
+        noteBtns.className = "note-btns";
+        noteBtns.id = `note-btns-${data.qNum}`;
+        noteBtns.style.display = "none";
+
+        const saveNoteBtn = document.createElement("button");
+        saveNoteBtn.className = "btn btn-primary";
+        saveNoteBtn.style.fontSize = "0.78em";
+        saveNoteBtn.textContent = "💾 Save";
+        saveNoteBtn.onclick = () => saveNote(data.qNum);
+
+        const delNoteBtn = document.createElement("button");
+        delNoteBtn.className = "btn btn-danger";
+        delNoteBtn.style.fontSize = "0.78em";
+        delNoteBtn.textContent = "🗑 Delete";
+        delNoteBtn.onclick = () => deleteNote(data.qNum);
+
+        const cancelNoteBtn = document.createElement("button");
+        cancelNoteBtn.className = "btn btn-secondary";
+        cancelNoteBtn.style.fontSize = "0.78em";
+        cancelNoteBtn.textContent = "Cancel";
+        cancelNoteBtn.onclick = () => closeNoteEditor(data.qNum);
+
+        noteBtns.append(saveNoteBtn, delNoteBtn, cancelNoteBtn);
+        noteArea.append(noteDisplay, noteTA, noteBtns);
+        body.appendChild(noteArea);
+
+        // Final card order: [headerDiv] [questionEl] [body]
+        // questionEl is already positioned after headerDiv; just append body at the end
+        card.appendChild(body);
+
+        // ---- Restore state ----
+        loadBookmark(data.qNum, card, bmBtn);
+        loadNote(data.qNum, noteDisplay);
+      });
+
+      // =====================================================
+      //  COLLAPSE / EXPAND
+      // =====================================================
+      function setCardCollapsed(card, collapsed) {
+        const body = card.querySelector(".collapsible");
+        const btn = card.querySelector(".collapse-toggle");
+        if (!body || !btn) return;
+        // Set max-height based on content
+        if (collapsed) {
+          body.style.maxHeight = body.scrollHeight + "px"; // trigger from expanded
+          requestAnimationFrame(() => {
+            body.style.maxHeight = body.scrollHeight + "px";
+            requestAnimationFrame(() => {
+              body.classList.add("collapsed");
+            });
+          });
+          btn.textContent = "▶ Show";
+        } else {
+          body.classList.remove("collapsed");
+          body.style.maxHeight = body.scrollHeight + "px";
+          setTimeout(() => {
+            body.style.maxHeight = "none";
+          }, 320);
+          btn.textContent = "▼ Hide";
+        }
+      }
+
+      function toggleCard(card, btn) {
+        const body = card.querySelector(".collapsible");
+        if (!body) return;
+        const isCollapsed = body.classList.contains("collapsed");
+        setCardCollapsed(card, !isCollapsed);
+      }
+
+      function collapseAll() {
+        allCards.forEach((c) => setCardCollapsed(c, true));
+        showToast("All explanations collapsed");
+      }
+
+      function expandAll() {
+        allCards.forEach((c) => setCardCollapsed(c, false));
+        showToast("All explanations expanded");
+      }
+
+      // =====================================================
+      //  JUMP TO QUESTION
+      // =====================================================
+      function jumpToQ() {
+        const val = parseInt(document.getElementById("jump-input").value);
+        if (!val) {
+          showToast("Enter a question number");
+          return;
+        }
+
+        const target = document.getElementById(`card-q${val}`);
+        if (target) {
+          target.scrollIntoView({ behavior: "smooth", block: "center" });
+          // Flash highlight
+          target.style.transition = "box-shadow 0.2s";
+          target.style.boxShadow = "0 0 0 3px #3b82f6";
+          setTimeout(() => {
+            target.style.boxShadow = "";
+          }, 1500);
+          showToast(`Jumped to Q${val}`);
+        } else {
+          showToast(`Q${val} not found`);
+        }
+      }
+
+      document.getElementById("jump-input").addEventListener("keydown", (e) => {
+        if (e.key === "Enter") jumpToQ();
+      });
+
+      // =====================================================
+      //  DARK MODE
+      // =====================================================
+      function toggleDark() {
+        const on = document.body.classList.toggle("dark");
+        localStorage.setItem("phy-dark", on ? "1" : "0");
+        document.getElementById("dark-toggle").textContent = on
+          ? "☀️ Light Mode"
+          : "🌙 Dark Mode";
+      }
+
+      // Restore dark mode
+      if (localStorage.getItem("phy-dark") === "1") {
+        document.body.classList.add("dark");
+        document.getElementById("dark-toggle").textContent = "☀️ Light Mode";
+      }
+
+      // =====================================================
+      //  BOOKMARKS
+      // =====================================================
+      function toggleBookmark(qNum, card, btn) {
+        const key = `phy-bm-${qNum}`;
+        const isOn = localStorage.getItem(key) === "1";
+        if (isOn) {
+          localStorage.removeItem(key);
+          card.classList.remove("bookmarked");
+          btn.classList.remove("active");
+          showToast(`Q${qNum} bookmark removed`);
+        } else {
+          localStorage.setItem(key, "1");
+          card.classList.add("bookmarked");
+          btn.classList.add("active");
+          showToast(`Q${qNum} bookmarked ⭐`);
+        }
+      }
+
+      function loadBookmark(qNum, card, btn) {
+        if (localStorage.getItem(`phy-bm-${qNum}`) === "1") {
+          card.classList.add("bookmarked");
+          btn.classList.add("active");
+        }
+      }
+
+      // =====================================================
+      //  NOTES
+      // =====================================================
+      function toggleNoteEditor(qNum, card) {
+        const ta = document.getElementById(`note-ta-${qNum}`);
+        const btns = document.getElementById(`note-btns-${qNum}`);
+        const disp = document.getElementById(`note-display-${qNum}`);
+        const isOpen = ta.style.display === "block";
+        if (isOpen) {
+          closeNoteEditor(qNum);
+        } else {
+          ta.value = localStorage.getItem(`phy-note-${qNum}`) || "";
+          ta.style.display = "block";
+          btns.style.display = "flex";
+          ta.focus();
+          // Expand card if collapsed
+          const body = card.querySelector(".collapsible");
+          if (body && body.classList.contains("collapsed")) {
+            setCardCollapsed(card, false);
+          }
+        }
+      }
+
+      function saveNote(qNum) {
+        const ta = document.getElementById(`note-ta-${qNum}`);
+        const disp = document.getElementById(`note-display-${qNum}`);
+        const text = ta.value.trim();
+        if (text) {
+          localStorage.setItem(`phy-note-${qNum}`, text);
+          disp.textContent = "📝 " + text;
+          disp.style.display = "block";
+          showToast("Note saved!");
+        } else {
+          deleteNote(qNum);
+          return;
+        }
+        closeNoteEditor(qNum);
+      }
+
+      function deleteNote(qNum) {
+        localStorage.removeItem(`phy-note-${qNum}`);
+        const disp = document.getElementById(`note-display-${qNum}`);
+        if (disp) {
+          disp.textContent = "";
+          disp.style.display = "none";
+        }
+        closeNoteEditor(qNum);
+        showToast("Note deleted");
+      }
+
+      function closeNoteEditor(qNum) {
+        const ta = document.getElementById(`note-ta-${qNum}`);
+        const btns = document.getElementById(`note-btns-${qNum}`);
+        if (ta) ta.style.display = "none";
+        if (btns) btns.style.display = "none";
+      }
+
+      function loadNote(qNum, disp) {
+        const saved = localStorage.getItem(`phy-note-${qNum}`);
+        if (saved) {
+          disp.textContent = "📝 " + saved;
+          disp.style.display = "block";
+        }
+      }
+
+      // =====================================================
+      //  TEST MODE
+      // =====================================================
+      let testQueue = [];
+      let testCurrent = 0;
+      let testAnswers = {};
+      let testTotal = 0;
+      let kbFocusIdx = -1; // keyboard-highlighted option index
+
+      function enterTestMode() {
+        document.body.classList.add("test-mode");
+        document.getElementById("test-setup").style.display = "block";
+        document.getElementById("test-active").style.display = "none";
+        document.getElementById("test-results").style.display = "none";
+      }
+
+      function exitTestMode() {
+        document.body.classList.remove("test-mode");
+        document.getElementById("test-active").style.display = "none";
+        document.getElementById("test-results").style.display = "none";
+        document.getElementById("test-setup").style.display = "block";
+      }
+
+      function startTest() {
+        const count = Math.min(
+          200,
+          Math.max(
+            1,
+            parseInt(document.getElementById("test-count").value) || 20,
+          ),
+        );
+        const order = document.getElementById("test-order").value;
+
+        // Filter only cards that have a valid correct answer
+        let pool = mcqData.filter((d) => d.correctIndex >= 0);
+
+        if (order === "shuffle") {
+          pool = pool.sort(() => Math.random() - 0.5);
+        }
+
+        testQueue = pool.slice(0, count);
+        testTotal = testQueue.length;
+        testCurrent = 0;
+        testAnswers = {};
+
+        document.getElementById("test-setup").style.display = "none";
+        document.getElementById("test-active").style.display = "block";
+        document.getElementById("test-results").style.display = "none";
+
+        renderTestQuestion();
+      }
+
+      function renderTestQuestion() {
+        const data = testQueue[testCurrent];
+        const label = document.getElementById("test-progress-label");
+        const qTag = document.getElementById("test-q-tag");
+        const qText = document.getElementById("test-question");
+        const optUl = document.getElementById("test-options");
+        const expDiv = document.getElementById("test-explanation");
+        const btnNext = document.getElementById("btn-next");
+        const btnPrev = document.getElementById("btn-prev");
+        const btnFinish = document.getElementById("btn-finish");
+
+        label.textContent = `Question ${testCurrent + 1} of ${testTotal}`;
+        qTag.textContent = data.tag;
+        qText.textContent = data.question;
+        expDiv.style.display = "none";
+        expDiv.innerHTML = data.explanation;
+        kbFocusIdx = -1; // reset keyboard focus on each new question
+
+        // Sync test dark toggle label
+        const dtTest = document.getElementById("dark-toggle-test");
+        if (dtTest)
+          dtTest.textContent = document.body.classList.contains("dark")
+            ? "☀️"
+            : "🌙";
+
+        optUl.innerHTML = "";
+        const answered = testAnswers[testCurrent];
+        const isAnswered = answered !== undefined;
+
+        // Cards with only 1 option (div.correct style) — show as "Reveal Answer" card
+        if (data.options.length === 1) {
+          const li = document.createElement("li");
+          if (isAnswered) {
+            li.textContent = data.options[0].text;
+            li.classList.add("selected-correct", "locked");
+          } else {
+            li.textContent = "👁 Click to Reveal Answer";
+            li.style.cursor = "pointer";
+            li.style.fontStyle = "italic";
+            li.style.color = "var(--btn-primary)";
+            li.onclick = () => answerQuestion(0); // auto-mark correct on reveal
+          }
+          optUl.appendChild(li);
+        } else {
+          // Normal multiple-choice rendering
+          data.options.forEach((opt, i) => {
+            const li = document.createElement("li");
+            li.textContent = opt.text;
+
+            if (isAnswered) {
+              li.classList.add("locked");
+              if (i === data.correctIndex) {
+                li.classList.add(
+                  answered === i ? "selected-correct" : "reveal-correct",
+                );
+              } else if (i === answered && answered !== data.correctIndex) {
+                li.classList.add("selected-wrong");
+              }
+            } else {
+              li.onclick = () => answerQuestion(i);
+            }
+            optUl.appendChild(li);
+          });
+        }
+
+        if (isAnswered) {
+          expDiv.style.display = "block";
+        }
+
+        // Nav buttons
+        btnPrev.disabled = testCurrent === 0;
+        const isLast = testCurrent === testTotal - 1;
+        btnNext.style.display = isLast ? "none" : "inline-block";
+        btnFinish.style.display = isLast ? "inline-block" : "none";
+      }
+
+      function answerQuestion(choiceIdx) {
+        testAnswers[testCurrent] = choiceIdx;
+        renderTestQuestion();
+      }
+
+      function testNav(dir) {
+        testCurrent = Math.max(0, Math.min(testTotal - 1, testCurrent + dir));
+        renderTestQuestion();
+      }
+
+      function finishTest() {
+        // Score
+        let correct = 0;
+        testQueue.forEach((data, i) => {
+          if (testAnswers[i] === data.correctIndex) correct++;
+        });
+
+        document.getElementById("test-active").style.display = "none";
+        document.getElementById("test-results").style.display = "block";
+
+        const pct = Math.round((correct / testTotal) * 100);
+        const circle = document.getElementById("score-display");
+        circle.innerHTML = `${pct}%<span>${correct} / ${testTotal}</span>`;
+
+        const msg = document.getElementById("result-msg");
+        const det = document.getElementById("result-detail");
+        if (pct >= 80) {
+          msg.textContent = "🎉 Excellent Work!";
+        } else if (pct >= 60) {
+          msg.textContent = "👍 Good Job!";
+        } else if (pct >= 40) {
+          msg.textContent = "📖 Keep Studying!";
+        } else {
+          msg.textContent = "💪 Don't Give Up!";
+        }
+        det.textContent = `You answered ${correct} out of ${testTotal} questions correctly (${pct}%).`;
+      }
+
+      function retryTest() {
+        testCurrent = 0;
+        testAnswers = {};
+        // Reshuffle if needed
+        if (document.getElementById("test-order")?.value === "shuffle") {
+          testQueue = testQueue.sort(() => Math.random() - 0.5);
+        }
+        document.getElementById("test-results").style.display = "none";
+        document.getElementById("test-active").style.display = "block";
+        renderTestQuestion();
+      }
+
+      // =====================================================
+      //  TEST JUMP
+      // =====================================================
+      function testJump() {
+        const val = parseInt(document.getElementById("test-jump-input").value);
+        if (!val || val < 1) {
+          showToast("Enter a valid question number");
+          return;
+        }
+        const idx = testQueue.findIndex((d) => d.qNum === val);
+        if (idx === -1) {
+          showToast(`Q${val} isn't in this test session`);
+          return;
+        }
+        testCurrent = idx;
+        renderTestQuestion();
+        showToast(`Jumped to Q${val}`);
+      }
+
+      document
+        .getElementById("test-jump-input")
+        .addEventListener("keydown", (e) => {
+          if (e.key === "Enter") {
+            e.stopPropagation();
+            testJump();
+          }
+        });
+
+      // =====================================================
+      //  KEYBOARD NAVIGATION (test mode only)
+      // =====================================================
+      function getTestOptions() {
+        return Array.from(document.querySelectorAll("#test-options li"));
+      }
+
+      function updateKbFocus(items) {
+        items.forEach((li, i) => {
+          li.classList.toggle("kb-focus", i === kbFocusIdx);
+        });
+      }
+
+      document.addEventListener("keydown", function (e) {
+        // Only active during test mode & test-active is visible
+        if (!document.body.classList.contains("test-mode")) return;
+        if (document.getElementById("test-active").style.display === "none")
+          return;
+
+        // Don't hijack when user is typing in the jump input
+        if (
+          document.activeElement === document.getElementById("test-jump-input")
+        )
+          return;
+
+        const data = testQueue[testCurrent];
+        const answered = testAnswers[testCurrent] !== undefined;
+        const items = getTestOptions();
+        const optCount = items.length;
+
+        switch (e.key) {
+          case "ArrowUp":
+            e.preventDefault();
+            if (optCount === 0) break;
+            kbFocusIdx = kbFocusIdx <= 0 ? optCount - 1 : kbFocusIdx - 1;
+            updateKbFocus(items);
+            break;
+
+          case "ArrowDown":
+            e.preventDefault();
+            if (optCount === 0) break;
+            kbFocusIdx = kbFocusIdx >= optCount - 1 ? 0 : kbFocusIdx + 1;
+            updateKbFocus(items);
+            break;
+
+          case "Enter":
+            e.preventDefault();
+            if (answered) {
+              // Enter after answering = go next (or finish)
+              const isLast = testCurrent === testTotal - 1;
+              if (isLast) finishTest();
+              else testNav(1);
+            } else if (kbFocusIdx >= 0 && kbFocusIdx < optCount) {
+              // Confirm the highlighted option
+              answerQuestion(kbFocusIdx);
+            } else if (optCount === 1) {
+              // Single reveal card
+              answerQuestion(0);
+            }
+            break;
+
+          case "ArrowLeft":
+          case "Backspace":
+            if (
+              e.key === "Backspace" &&
+              document.activeElement.tagName === "INPUT"
+            )
+              break;
+            e.preventDefault();
+            testNav(-1);
+            break;
+
+          case "ArrowRight":
+            e.preventDefault();
+            testNav(1);
+            break;
+        }
+      });
+
+      // =====================================================
+      //  TOAST
+      // =====================================================
+      let _toastTimer;
+      function showToast(msg) {
+        const t = document.getElementById("toast");
+        t.textContent = msg;
+        t.classList.add("show");
+        clearTimeout(_toastTimer);
+        _toastTimer = setTimeout(() => t.classList.remove("show"), 2200);
+      }
+    </script>
+  </body>
+</html>
